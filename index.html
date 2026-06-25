@@ -3,644 +3,616 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Placē — Where talent meets practice</title>
+<title>Placē — Some matches change everything.</title>
+<meta name="description" content="Placē connects nurse injectors and aesthetic clinics through human-vetted, considered matching. Not a job board. Not an agency. Australia.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@800&family=Bodoni+Moda:ital,opsz,wght@1,6..96,300;1,6..96,400&family=Big+Shoulders+Display:wght@900&family=Space+Grotesk:wght@300;400;500&display=swap">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  :root {
-    --truffle: #2C2418;
-    --sandalwood: #8C7B62;
-    --dune: #C8A882;
-    --parchment: #F2EDE4;
-    --linen: #FAF7F2;
-    --border: #E0D8CC;
-  }
+:root {
+  --px:        3.5rem;
+  --parchment: #F5F0E6;
+  --linen:     #EDE7DA;
+  --bark:      #4A3020;
+  --tobacco:   #2C1A10;
+  --cobalt:    #2756C5;
+  --rule:      rgba(44,26,16,.1);
+}
 
-  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--parchment);
+  color: var(--tobacco);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px; line-height: 1.7;
+  overflow-x: hidden;
+}
 
-  body {
-    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
-    background: var(--linen);
-    color: var(--truffle);
-    -webkit-font-smoothing: antialiased;
-  }
+/* ── NAV ─────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 0 var(--px); height: 68px;
+  display: flex; align-items: center; justify-content: space-between;
+  transition: background .4s, box-shadow .4s;
+}
+nav.scrolled {
+  background: rgba(245,240,230,.97);
+  box-shadow: 0 .5px 0 var(--rule);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+}
+/* Wordmark only — clean, no redundant Ē circle */
+.nav-logo {
+  font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: 22px; letter-spacing: .06em;
+  color: var(--parchment); text-decoration: none; transition: color .4s;
+}
+.nav-logo .e { color: var(--cobalt); }
+nav.scrolled .nav-logo { color: var(--tobacco); }
+.nav-cta {
+  font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+  color: rgba(245,240,230,.72); text-decoration: none;
+  border: 1px solid rgba(245,240,230,.25); padding: 8px 22px; border-radius: 2px;
+  transition: all .2s;
+}
+.nav-cta:hover { color: var(--parchment); border-color: rgba(245,240,230,.5); }
+nav.scrolled .nav-cta { color: var(--cobalt); border-color: rgba(39,86,197,.3); }
+nav.scrolled .nav-cta:hover { background: var(--cobalt); color: #fff; border-color: transparent; }
 
-  /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    padding: 1.25rem 2rem;
-    display: flex; align-items: center; justify-content: space-between;
-    background: rgba(250,247,242,0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 0.5px solid var(--border);
-  }
-  .nav-wordmark {
-    font-family: Georgia, serif;
-    font-size: 22px;
-    font-weight: 400;
-    letter-spacing: 1px;
-    color: var(--truffle);
-    text-decoration: none;
-  }
-  .nav-cta {
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--truffle);
-    text-decoration: none;
-    border: 0.5px solid var(--sandalwood);
-    border-radius: 20px;
-    padding: 7px 18px;
-    transition: background 0.2s, color 0.2s;
-  }
-  .nav-cta:hover { background: var(--truffle); color: var(--parchment); border-color: var(--truffle); }
+/* ── HERO ────────────────────────────────── */
+#hero {
+  min-height: 100vh;
+  background: linear-gradient(155deg, #3C2114 0%, #2C1A10 48%, #1A0C08 100%);
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 0 var(--px) 6rem;
+  position: relative; overflow: hidden;
+}
+#hero::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; height: 160px;
+  background: linear-gradient(to bottom, transparent, var(--parchment));
+  pointer-events: none;
+}
+.hero-bg {
+  position: absolute; top: -10%; right: -6%;
+  font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: clamp(300px, 46vw, 600px); line-height: 1;
+  color: rgba(39,86,197,.06); user-select: none; pointer-events: none;
+  letter-spacing: -.03em;
+}
+.hero-glow {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 65% 50% at 20% 60%, rgba(70,44,28,.55) 0%, transparent 65%);
+  pointer-events: none;
+}
+.hero-kicker {
+  font-size: 10px; letter-spacing: .18em; text-transform: uppercase;
+  color: rgba(245,240,230,.32); margin-bottom: 2.5rem; position: relative; z-index: 1;
+}
+.hero-h1 {
+  font-family: 'Big Shoulders Display', sans-serif; font-weight: 900;
+  font-size: clamp(58px, 9vw, 114px); line-height: .92; letter-spacing: -.015em;
+  color: var(--parchment); max-width: 13ch; margin-bottom: 2rem; position: relative; z-index: 1;
+}
+.hero-sub {
+  font-family: 'Bodoni Moda', serif; font-style: italic;
+  font-size: clamp(19px, 2.5vw, 27px); color: rgba(245,240,230,.4);
+  margin-bottom: 3.5rem; max-width: 38ch; position: relative; z-index: 1;
+}
+.hero-actions { display: flex; gap: 1.25rem; align-items: center; flex-wrap: wrap; position: relative; z-index: 1; }
+.btn-fill {
+  background: var(--cobalt); color: #fff;
+  font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+  padding: 14px 34px; border-radius: 2px; text-decoration: none; transition: background .2s;
+}
+.btn-fill:hover { background: #1E45A8; }
+.btn-text {
+  font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+  color: rgba(245,240,230,.6); text-decoration: none;
+  border-bottom: .5px solid rgba(245,240,230,.25); padding-bottom: 2px;
+  transition: color .2s, border-color .2s;
+}
+.btn-text:hover { color: var(--parchment); border-color: rgba(245,240,230,.5); }
 
-  /* HERO */
-  .hero {
-    min-height: 100vh;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    text-align: center;
-    padding: 8rem 2rem 5rem;
-    background: var(--linen);
-    position: relative;
-  }
-  .hero::after {
-    content: '';
-    position: absolute; bottom: 0; left: 0; right: 0;
-    height: 1px; background: var(--border);
-  }
-  .hero-eyebrow {
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--sandalwood);
-    margin-bottom: 2rem;
-  }
-  .hero-headline {
-    font-family: Georgia, serif;
-    font-size: clamp(42px, 8vw, 88px);
-    font-weight: 400;
-    color: var(--truffle);
-    line-height: 1.1;
-    letter-spacing: -1px;
-    max-width: 820px;
-    margin-bottom: 1.5rem;
-  }
-  .hero-headline em {
-    font-style: italic;
-    color: var(--sandalwood);
-  }
-  .hero-sub {
-    font-size: 16px;
-    color: var(--sandalwood);
-    line-height: 1.7;
-    max-width: 480px;
-    margin-bottom: 3rem;
-  }
-  .hero-actions {
-    display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
-  }
-  .btn-primary {
-    font-size: 12px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--parchment);
-    background: var(--truffle);
-    border: none;
-    border-radius: 4px;
-    padding: 14px 28px;
-    cursor: pointer;
-    text-decoration: none;
-    transition: opacity 0.2s;
-  }
-  .btn-primary:hover { opacity: 0.85; }
-  .btn-secondary {
-    font-size: 12px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--truffle);
-    background: transparent;
-    border: 0.5px solid var(--sandalwood);
-    border-radius: 4px;
-    padding: 14px 28px;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background 0.2s, color 0.2s;
-  }
-  .btn-secondary:hover { background: var(--truffle); color: var(--parchment); border-color: var(--truffle); }
-  .hero-note {
-    font-size: 11px;
-    color: var(--sandalwood);
-    margin-top: 1.5rem;
-    letter-spacing: 0.04em;
-  }
+/* ── SHARED ──────────────────────────────── */
+.lbl {
+  font-size: 10px; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--cobalt); display: flex; align-items: center; gap: .65rem; margin-bottom: 1.75rem;
+}
+.lbl::before { content: ''; width: 22px; height: 1.5px; background: var(--cobalt); flex-shrink: 0; }
+.rule-h { width: 100%; height: .5px; background: var(--rule); }
+.btn-border {
+  font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--tobacco); text-decoration: none;
+  border: 1px solid rgba(44,26,16,.28); border-radius: 2px;
+  padding: 12px 28px; display: inline-block; transition: all .2s;
+}
+.btn-border:hover { background: var(--linen); border-color: rgba(44,26,16,.45); }
 
-  /* PROBLEM STRIP */
-  .problem-strip {
-    background: var(--truffle);
-    padding: 5rem 2rem;
-    text-align: center;
-  }
-  .strip-inner { max-width: 680px; margin: 0 auto; }
-  .strip-label {
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--sandalwood);
-    margin-bottom: 1.5rem;
-  }
-  .strip-quote {
-    font-family: Georgia, serif;
-    font-size: clamp(22px, 4vw, 34px);
-    color: var(--parchment);
-    line-height: 1.4;
-    font-weight: 400;
-    margin-bottom: 1.5rem;
-  }
-  .strip-body {
-    font-size: 14px;
-    color: var(--sandalwood);
-    line-height: 1.8;
-  }
+/* ── WHAT WE ARE ─────────────────────────── */
+#what { padding: 8rem var(--px) 6rem; }
+.what-top {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+  margin-bottom: 5rem; align-items: end;
+}
+.what-h2 {
+  font-family: 'Big Shoulders Display', sans-serif; font-weight: 900;
+  font-size: clamp(44px, 5.5vw, 72px); line-height: .95; color: var(--tobacco);
+}
+.what-copy { font-size: 15px; color: var(--bark); line-height: 1.9; }
+.what-copy p + p { margin-top: 1rem; }
+.pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.pillar {
+  padding: 2.5rem 2.25rem; background: var(--linen);
+  border-top: 2px solid var(--cobalt);
+}
+.pillar-n {
+  font-family: 'Big Shoulders Display', sans-serif; font-weight: 900;
+  font-size: 40px; color: rgba(39,86,197,.1); line-height: 1; margin-bottom: .75rem;
+}
+.pillar-t {
+  font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: 12px; letter-spacing: .07em; text-transform: uppercase;
+  color: var(--tobacco); margin-bottom: .75rem;
+}
+.pillar-b { font-size: 14px; color: var(--bark); line-height: 1.8; }
 
-  /* STATS */
-  .stats-section {
-    padding: 5rem 2rem;
-    background: var(--parchment);
-    border-bottom: 0.5px solid var(--border);
-  }
-  .stats-inner {
-    max-width: 900px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-  }
-  .stat-card {
-    padding: 2.5rem 2rem;
-    text-align: center;
-    border-right: 0.5px solid var(--border);
-  }
-  .stat-card:last-child { border-right: none; }
-  .stat-number {
-    font-family: Georgia, serif;
-    font-size: clamp(40px, 6vw, 64px);
-    color: var(--truffle);
-    font-weight: 400;
-    line-height: 1;
-    margin-bottom: 10px;
-  }
-  .stat-label {
-    font-size: 12px;
-    color: var(--sandalwood);
-    line-height: 1.5;
-    letter-spacing: 0.02em;
-  }
+/* ── HOW IT WORKS ────────────────────────── */
+#how { padding: 7rem var(--px); border-top: .5px solid var(--rule); }
+.how-top { margin-bottom: 4.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: end; }
+.how-h2 {
+  font-family: 'Big Shoulders Display', sans-serif; font-weight: 900;
+  font-size: clamp(44px, 5vw, 64px); line-height: 1.0; color: var(--tobacco);
+}
+.how-intro { font-size: 15px; color: var(--bark); line-height: 1.88; }
+/* Clean vertical stack — big cobalt number + content */
+.steps { display: flex; flex-direction: column; }
+.step {
+  display: grid; grid-template-columns: 96px 1fr;
+  padding: 3.5rem 0; border-bottom: .5px solid var(--rule);
+  align-items: start;
+}
+.step:first-child { padding-top: 0; }
+.step:last-child { border-bottom: none; }
+.step-n {
+  font-family: 'Big Shoulders Display', sans-serif; font-weight: 900;
+  font-size: 58px; color: var(--cobalt); line-height: 1.0; letter-spacing: -.02em;
+  padding-top: .1rem;
+}
+.step-t {
+  font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: 19px; letter-spacing: .02em; text-transform: uppercase;
+  color: var(--tobacco); margin-bottom: .65rem;
+}
+.step-b { font-size: 14px; color: var(--bark); line-height: 1.82; }
 
-  /* HOW IT WORKS */
-  .how-section {
-    padding: 6rem 2rem;
-    background: var(--linen);
-  }
-  .how-inner { max-width: 900px; margin: 0 auto; }
-  .section-header { margin-bottom: 3.5rem; }
-  .section-eyebrow {
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--sandalwood);
-    margin-bottom: 0.75rem;
-  }
-  .section-title {
-    font-family: Georgia, serif;
-    font-size: clamp(28px, 4vw, 44px);
-    font-weight: 400;
-    color: var(--truffle);
-    line-height: 1.2;
-  }
-  .how-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2px;
-    background: var(--border);
-    border: 0.5px solid var(--border);
-  }
-  .how-card {
-    background: var(--linen);
-    padding: 2.5rem;
-  }
-  .how-card-header {
-    display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1rem;
-  }
-  .how-side-tag {
-    font-size: 9px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--parchment);
-    background: var(--truffle);
-    border-radius: 2px;
-    padding: 3px 8px;
-    flex-shrink: 0;
-    margin-top: 4px;
-  }
-  .how-card-title {
-    font-family: Georgia, serif;
-    font-size: 20px;
-    color: var(--truffle);
-    font-weight: 400;
-    line-height: 1.3;
-  }
-  .how-steps { list-style: none; }
-  .how-step {
-    display: flex; gap: 14px;
-    padding: 12px 0;
-    border-bottom: 0.5px solid var(--border);
-    font-size: 13px;
-    color: var(--truffle);
-    line-height: 1.5;
-  }
-  .how-step:last-child { border-bottom: none; }
-  .step-num {
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    color: var(--sandalwood);
-    font-variant-numeric: tabular-nums;
-    flex-shrink: 0;
-    padding-top: 2px;
-  }
+/* ── FOR PRACTITIONERS ───────────────────── */
+#nurses { padding: 8rem var(--px); border-top: .5px solid var(--rule); }
+.nurses-statement {
+  font-family: 'Bodoni Moda', serif; font-style: italic;
+  font-size: clamp(38px, 5.5vw, 70px); line-height: 1.18;
+  color: var(--tobacco); max-width: 22ch; margin-bottom: 4rem;
+}
+.nurses-below { display: grid; grid-template-columns: 5fr 4fr; gap: 5rem; }
+.nurses-body { font-size: 15px; color: var(--bark); line-height: 1.9; margin-bottom: 2.5rem; }
+.checks { list-style: none; margin-bottom: 2.5rem; }
+.checks li {
+  font-size: 13px; color: var(--bark); padding: .6rem 0;
+  border-bottom: .5px solid var(--rule);
+  display: flex; gap: 1rem; align-items: flex-start; line-height: 1.65;
+}
+.checks li::before { content: '✦'; color: var(--cobalt); flex-shrink: 0; font-size: 9px; margin-top: 5px; }
 
-  /* TRUST */
-  .trust-section {
-    background: var(--truffle);
-    padding: 5rem 2rem;
-  }
-  .trust-inner {
-    max-width: 900px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: #3D3526;
-  }
-  .trust-item {
-    background: var(--truffle);
-    padding: 2rem 1.75rem;
-    text-align: center;
-  }
-  .trust-mark {
-    font-family: Georgia, serif;
-    font-size: 28px;
-    color: var(--dune);
-    margin-bottom: 8px;
-  }
-  .trust-title {
-    font-size: 12px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--parchment);
-    margin-bottom: 6px;
-  }
-  .trust-desc {
-    font-size: 12px;
-    color: var(--sandalwood);
-    line-height: 1.6;
-  }
+/* ── FOR CLINICS ─────────────────────────── */
+#clinics { padding: 7rem var(--px); border-top: .5px solid var(--rule); }
+.clinics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+.clinics-h2 {
+  font-family: 'Big Shoulders Display', sans-serif; font-weight: 900;
+  font-size: clamp(42px, 5.5vw, 70px); line-height: .96; color: var(--tobacco); margin-bottom: 1.5rem;
+}
+.clinics-body { font-size: 15px; color: var(--bark); line-height: 1.9; margin-bottom: 2.5rem; }
+/* Dimensions as elegant typographic list — no chips */
+.dims-wrap { margin-bottom: 2.5rem; padding: 2rem 0; border-top: .5px solid var(--rule); border-bottom: .5px solid var(--rule); }
+.dims-label {
+  font-size: 10px; letter-spacing: .13em; text-transform: uppercase;
+  color: rgba(44,26,16,.4); margin-bottom: .85rem;
+}
+.dims-text {
+  font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: 13px; letter-spacing: .07em; text-transform: uppercase;
+  color: var(--cobalt); margin-bottom: .85rem; line-height: 2.2;
+}
+.dims-note {
+  font-family: 'Bodoni Moda', serif; font-style: italic;
+  font-size: 13px; color: rgba(44,26,16,.38);
+}
 
-  /* WAITLIST SECTION */
-  .waitlist-section {
-    padding: 7rem 2rem;
-    background: var(--parchment);
-  }
-  .waitlist-inner {
-    max-width: 680px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  .waitlist-eyebrow {
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--sandalwood);
-    margin-bottom: 1.5rem;
-  }
-  .waitlist-headline {
-    font-family: Georgia, serif;
-    font-size: clamp(30px, 5vw, 52px);
-    font-weight: 400;
-    color: var(--truffle);
-    line-height: 1.2;
-    margin-bottom: 1rem;
-  }
-  .waitlist-sub {
-    font-size: 15px;
-    color: var(--sandalwood);
-    line-height: 1.7;
-    margin-bottom: 3rem;
-  }
+/* ── FOR ROOMS ───────────────────────────── */
+#rooms { padding: 7rem var(--px); border-top: .5px solid var(--rule); }
+.rooms-top { margin-bottom: 4rem; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: end; }
+.rooms-h2 {
+  font-family: 'Big Shoulders Display', sans-serif; font-weight: 900;
+  font-size: clamp(42px, 5vw, 66px); line-height: 1.0; color: var(--tobacco);
+}
+.rooms-lede { font-size: 15px; color: var(--bark); line-height: 1.9; }
+.rooms-panels { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.rooms-panel {
+  background: var(--linen); padding: 3rem 2.75rem;
+  border-top: 2px solid var(--cobalt);
+}
+.rooms-panel-lbl {
+  font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: 12px; letter-spacing: .07em; text-transform: uppercase;
+  color: var(--cobalt); display: block; margin-bottom: 1.25rem;
+}
+.rooms-panel-body { font-size: 15px; color: var(--bark); line-height: 1.9; margin-bottom: 2rem; }
+.checks-room li { color: var(--bark); border-bottom-color: rgba(44,26,16,.08); }
+.checks-room li::before { color: var(--cobalt); }
 
-  /* SPLIT CTA */
-  .split-cta {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin-bottom: 2rem;
-  }
-  .cta-card {
-    border-radius: 8px;
-    padding: 2rem 1.5rem;
-    text-align: left;
-    text-decoration: none;
-    transition: transform 0.15s;
-    display: block;
-  }
-  .cta-card:hover { transform: translateY(-2px); }
-  .cta-card.nurse {
-    background: var(--truffle);
-    border: 0.5px solid var(--truffle);
-  }
-  .cta-card.clinic {
-    background: var(--linen);
-    border: 0.5px solid var(--border);
-  }
-  .cta-tag {
-    font-size: 9px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-  }
-  .cta-card.nurse .cta-tag { color: var(--dune); }
-  .cta-card.clinic .cta-tag { color: var(--sandalwood); }
-  .cta-title {
-    font-family: Georgia, serif;
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 1.3;
-    margin-bottom: 8px;
-  }
-  .cta-card.nurse .cta-title { color: var(--parchment); }
-  .cta-card.clinic .cta-title { color: var(--truffle); }
-  .cta-desc {
-    font-size: 12px;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-  }
-  .cta-card.nurse .cta-desc { color: var(--sandalwood); }
-  .cta-card.clinic .cta-desc { color: var(--sandalwood); }
-  .cta-btn {
-    display: inline-block;
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    border-radius: 3px;
-    padding: 9px 18px;
-  }
-  .cta-card.nurse .cta-btn {
-    background: var(--dune);
-    color: var(--truffle);
-  }
-  .cta-card.clinic .cta-btn {
-    background: var(--truffle);
-    color: var(--parchment);
-  }
-  .waitlist-note {
-    font-size: 11px;
-    color: var(--sandalwood);
-    line-height: 1.6;
-  }
+/* ── WHY PLACĒ ───────────────────────────── */
+#about {
+  padding: 9rem var(--px);
+  border-top: .5px solid var(--rule);
+  position: relative; overflow: hidden;
+}
+/* Large ghost Ē for visual energy */
+.about-e {
+  position: absolute; top: 50%; right: -6%;
+  transform: translateY(-50%);
+  font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: clamp(320px, 52vw, 680px);
+  color: rgba(39,86,197,.05); user-select: none; pointer-events: none; line-height: 1;
+}
+.about-inner { max-width: 700px; position: relative; }
+.about-h2 {
+  font-family: 'Big Shoulders Display', sans-serif; font-weight: 900;
+  font-size: clamp(56px, 8.5vw, 108px); line-height: .9; letter-spacing: -.02em;
+  color: var(--tobacco); margin-bottom: 2.5rem;
+}
+.about-statement {
+  font-family: 'Bodoni Moda', serif; font-style: italic;
+  font-size: clamp(20px, 2.8vw, 32px); line-height: 1.5;
+  color: var(--bark); margin-bottom: 2.75rem;
+  border-left: 3px solid var(--cobalt); padding-left: 1.75rem;
+}
+.about-body { font-size: 15px; color: var(--bark); line-height: 1.9; }
+.about-body p + p { margin-top: 1.1rem; }
+.badges { display: flex; gap: .55rem; flex-wrap: wrap; margin-top: 2.75rem; }
+.badge {
+  font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--cobalt); border: .5px solid rgba(39,86,197,.25);
+  background: rgba(39,86,197,.04); padding: 5px 13px; border-radius: 2px;
+}
 
-  /* MANIFESTO STRIP */
-  .manifesto-strip {
-    padding: 6rem 2rem;
-    background: var(--linen);
-    text-align: center;
-    border-top: 0.5px solid var(--border);
-    border-bottom: 0.5px solid var(--border);
-  }
-  .manifesto-text {
-    font-family: Georgia, serif;
-    font-size: clamp(20px, 3.5vw, 32px);
-    font-weight: 400;
-    color: var(--truffle);
-    line-height: 1.6;
-    max-width: 680px;
-    margin: 0 auto;
-  }
-  .manifesto-text em {
-    font-style: italic;
-    color: var(--sandalwood);
-  }
+/* ── CTA ─────────────────────────────────── */
+#cta {
+  background: linear-gradient(155deg, #3A2014 0%, #2C1A10 45%, #1A0C08 100%);
+  padding: 9rem var(--px); text-align: center; position: relative; overflow: hidden;
+}
+#cta::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 120px;
+  background: linear-gradient(to bottom, var(--parchment), transparent);
+  pointer-events: none;
+}
+.cta-bg {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: clamp(180px, 36vw, 500px);
+  color: rgba(245,240,230,.02); user-select: none; pointer-events: none; white-space: nowrap;
+}
+.cta-label {
+  font-size: 10px; letter-spacing: .18em; text-transform: uppercase;
+  color: rgba(245,240,230,.3); display: block; margin-bottom: 2rem; position: relative;
+}
+.cta-h2 {
+  font-family: 'Bodoni Moda', serif; font-style: italic;
+  font-size: clamp(38px, 5.5vw, 68px); color: var(--parchment);
+  line-height: 1.18; margin-bottom: 1.5rem; position: relative;
+}
+.cta-sub {
+  font-size: 14px; color: rgba(245,240,230,.38);
+  max-width: 42ch; margin: 0 auto 3.5rem; line-height: 1.8; position: relative;
+}
+.cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; }
+.btn-cta {
+  background: var(--cobalt); color: #fff;
+  font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+  padding: 15px 42px; border-radius: 2px; text-decoration: none; transition: background .2s;
+}
+.btn-cta:hover { background: #1E45A8; }
+.btn-cta-ghost {
+  font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+  color: rgba(245,240,230,.42); text-decoration: none;
+  border-bottom: .5px solid rgba(245,240,230,.2); padding: 15px 0;
+  transition: color .2s;
+}
+.btn-cta-ghost:hover { color: rgba(245,240,230,.72); }
 
-  /* FOOTER */
-  footer {
-    background: var(--truffle);
-    padding: 3rem 2rem;
-    text-align: center;
-  }
-  .footer-wordmark {
-    font-family: Georgia, serif;
-    font-size: 28px;
-    color: var(--parchment);
-    letter-spacing: 2px;
-    margin-bottom: 8px;
-  }
-  .footer-tagline {
-    font-size: 10px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--sandalwood);
-    margin-bottom: 1.5rem;
-  }
-  .footer-note {
-    font-size: 11px;
-    color: #5C4F3A;
-    letter-spacing: 0.04em;
-  }
+/* ── FOOTER ──────────────────────────────── */
+footer {
+  background: var(--tobacco);
+  box-shadow: inset 0 .5px 0 rgba(245,240,230,.06);
+  padding: 3rem var(--px);
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem;
+}
+.footer-logo {
+  font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: 18px; letter-spacing: .05em;
+  color: var(--parchment); text-decoration: none;
+}
+.footer-logo span { color: var(--cobalt); }
+.footer-links { display: flex; gap: 2rem; flex-wrap: wrap; align-items: center; }
+.footer-links a {
+  font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+  color: rgba(245,240,230,.46); text-decoration: none; transition: color .2s;
+}
+.footer-links a:hover { color: rgba(245,240,230,.82); }
+/* Rooms link in cobalt to stand out */
+.footer-rooms { color: var(--cobalt) !important; }
+.footer-rooms:hover { color: #4a7fe8 !important; }
+.footer-join {
+  font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+  color: rgba(245,240,230,.7); border: .5px solid rgba(245,240,230,.25);
+  border-radius: 2px; padding: 7px 18px; text-decoration: none; transition: all .2s;
+}
+.footer-join:hover { color: var(--parchment); border-color: rgba(245,240,230,.5); }
+.footer-copy { font-size: 11px; color: rgba(245,240,230,.26); letter-spacing: .06em; }
 
-  /* RESPONSIVE */
-  @media (max-width: 640px) {
-    nav { padding: 1rem 1.25rem; }
-    .stats-inner { grid-template-columns: 1fr; }
-    .stat-card { border-right: none; border-bottom: 0.5px solid var(--border); }
-    .how-grid { grid-template-columns: 1fr; }
-    .trust-inner { grid-template-columns: repeat(2, 1fr); }
-    .split-cta { grid-template-columns: 1fr; }
-  }
+/* ── REVEAL ──────────────────────────────── */
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity .72s ease, transform .72s ease; }
+.reveal.in { opacity: 1; transform: none; }
+.d1 { transition-delay: .1s; }
+.d2 { transition-delay: .2s; }
+
+/* ── RESPONSIVE ──────────────────────────── */
+@media (max-width: 900px) {
+  :root { --px: 1.75rem; }
+  #hero { padding-bottom: 5rem; }
+  #what, #how, #nurses, #clinics, #rooms, #about, #cta { padding-top: 5.5rem; padding-bottom: 5.5rem; }
+  .what-top, .how-top, .clinics-grid, .nurses-below, .rooms-top { grid-template-columns: 1fr; gap: 2.5rem; }
+  .pillars, .rooms-panels { grid-template-columns: 1fr; }
+  .step { grid-template-columns: 72px 1fr; padding: 2.5rem 0; }
+  footer { flex-direction: column; align-items: flex-start; }
+  .footer-links { gap: 1.5rem; }
+  .hero-bg { font-size: 220px; }
+}
 </style>
 </head>
 <body>
 
 <!-- NAV -->
-<nav>
-  <a class="nav-wordmark" href="#">Plac&#x113;</a>
-  <a class="nav-cta" href="#waitlist">Join the waitlist</a>
+<nav id="nav">
+  <a href="#" class="nav-logo">PLAC<span class="e">Ē</span></a>
+  <a href="https://tally.so/r/LZo961" class="nav-cta" target="_blank" rel="noopener">Join the waitlist</a>
 </nav>
 
 <!-- HERO -->
-<section class="hero">
-  <div style="margin-bottom:1.5rem;">
-    <div style="width:52px;height:52px;background:var(--truffle);border-radius:12px;display:flex;align-items:center;justify-content:center;margin:0 auto;">
-      <span style="font-family:Georgia,serif;font-size:22px;color:var(--parchment);letter-spacing:1px;">P&#x113;</span>
-    </div>
-  </div>
-  <p class="hero-eyebrow">Aesthetic practitioner matching &nbsp;·&nbsp; Coming soon &nbsp;·&nbsp; Australia</p>
-  <h1 class="hero-headline">The right fit exists.<br><em>Let us help you find it.</em></h1>
-  <p class="hero-sub">Intentional matching for aesthetic practitioners and the clinics built for them. Not a job board. Something better.</p>
+<section id="hero">
+  <div class="hero-bg" aria-hidden="true">Ē</div>
+  <div class="hero-glow" aria-hidden="true"></div>
+  <p class="hero-kicker">Selective matching · Aesthetic injectables · Australia</p>
+  <h1 class="hero-h1">Some matches change everything.</h1>
+  <p class="hero-sub">We find the ones worth waiting for.</p>
   <div class="hero-actions">
-    <a href="#waitlist" class="btn-primary">I'm a nurse — join waitlist</a>
-    <a href="#waitlist" class="btn-secondary">I run a clinic — join waitlist</a>
-  </div>
-  <p class="hero-note">Vetted. Matched. Placed.</p>
-</section>
-
-<!-- PROBLEM -->
-<section class="problem-strip">
-  <div class="strip-inner">
-    <p class="strip-label">Years in the industry taught us</p>
-    <p class="strip-quote">"The right match was always possible. What was missing was the infrastructure to make it happen — for nurses and clinics equally."</p>
-    <p class="strip-body">Talented practitioners are invisible to the clinics that would value them. Clinic owners are hiring blind, watching good injectors leave because the fit was never right to begin with. Both sides deserve better. This is the problem nobody has built infrastructure for. Until now.</p>
+    <a href="https://tally.so/r/LZo961" class="btn-fill" target="_blank" rel="noopener">Join as a nurse</a>
+    <a href="https://tally.so/r/PdPpeP" class="btn-text" target="_blank" rel="noopener">I'm a clinic owner →</a>
   </div>
 </section>
 
-<!-- STATS -->
-<section class="stats-section">
-  <div class="stats-inner">
-    <div class="stat-card">
-      <div class="stat-number">1 in 3</div>
-      <div class="stat-label">aesthetic nurses leave the industry in their first year</div>
+<!-- WHAT WE ARE -->
+<section id="what">
+  <div class="what-top reveal">
+    <div>
+      <div class="lbl">What we are</div>
+      <h2 class="what-h2">Not a job board. Not an agency.</h2>
     </div>
-    <div class="stat-card">
-      <div class="stat-number">72%</div>
-      <div class="stat-label">found their role through personal connections — not job boards</div>
+    <div class="what-copy">
+      <p>Most careers in aesthetics are shaped by chance — a listing at the right time, a clinic that happened to be hiring. The fit gets discovered later, if at all.</p>
+      <p>Placē is built for the opposite. Deliberate matching. Human judgement. The right environment found before you'd normally need to look — for practitioners who know what they want, and clinics who've stopped settling.</p>
     </div>
-    <div class="stat-card">
-      <div class="stat-number">$0</div>
-      <div class="stat-label">professional infrastructure exists for aesthetic placement in Australia</div>
+  </div>
+  <div class="pillars reveal d1">
+    <div class="pillar">
+      <div class="pillar-n">01</div>
+      <div class="pillar-t">For nurses</div>
+      <p class="pillar-b">Vetted placements matched to your values, autonomy, and the career you're building — not just the vacancy that exists right now.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-n">02</div>
+      <div class="pillar-t">For clinics</div>
+      <p class="pillar-b">Practitioners who fit your culture and your patients — introduced once we're certain it's right, not every time a CV lands in an inbox.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-n">03</div>
+      <div class="pillar-t">For rooms</div>
+      <p class="pillar-b">Treatment spaces matched to qualified injectors. Whether you're filling a room or finding one, we connect the right people.</p>
     </div>
   </div>
 </section>
 
 <!-- HOW IT WORKS -->
-<section class="how-section">
-  <div class="how-inner">
-    <div class="section-header">
-      <p class="section-eyebrow">How it works</p>
-      <h2 class="section-title">Built for both sides of the match.</h2>
+<section id="how">
+  <div class="how-top reveal">
+    <div>
+      <div class="lbl">How it works</div>
+      <h2 class="how-h2">Considered<br>by design.</h2>
     </div>
-    <div class="how-grid">
-      <div class="how-card">
-        <div class="how-card-header">
-          <span class="how-side-tag">Nurses</span>
-          <h3 class="how-card-title">Build your profile.<br>Get discovered.</h3>
-        </div>
-        <ul class="how-steps">
-          <li class="how-step"><span class="step-num">01</span><span>Create your practitioner profile — qualifications, experience, location, and what you're looking for</span></li>
-          <li class="how-step"><span class="step-num">02</span><span>We verify your AHPRA registration and insurance — your profile gets a trusted badge</span></li>
-          <li class="how-step"><span class="step-num">03</span><span>Curated clinics that match your values and skill level are surfaced to you — no cold applying</span></li>
-          <li class="how-step"><span class="step-num">04</span><span>When it's mutual, you're connected — and every placement is earned</span></li>
-        </ul>
+    <p class="how-intro">Every step is intentional. We don't make an introduction until we're confident it will hold — in culture, in practice, in the day-to-day of a real working relationship.</p>
+  </div>
+  <div class="steps reveal d1">
+    <div class="step">
+      <div class="step-n">01</div>
+      <div>
+        <div class="step-t">You apply</div>
+        <p class="step-b">Tell us who you are, what you're looking for, and what matters to you. This isn't a listing — it's the start of a real conversation.</p>
       </div>
-      <div class="how-card" style="background: var(--parchment);">
-        <div class="how-card-header">
-          <span class="how-side-tag">Clinics</span>
-          <h3 class="how-card-title">Stop hiring blind.<br>Find the right fit.</h3>
-        </div>
-        <ul class="how-steps">
-          <li class="how-step"><span class="step-num">01</span><span>Tell us about your clinic — your culture, product range, mentorship offering, and what you need</span></li>
-          <li class="how-step"><span class="step-num">02</span><span>Access a curated pool of AHPRA-verified, insured aesthetic practitioners — not a generic job board</span></li>
-          <li class="how-step"><span class="step-num">03</span><span>We match on culture and values — not just credentials and location</span></li>
-          <li class="how-step"><span class="step-num">04</span><span>Lower turnover. Lower re-hiring costs. Less operational disruption. Get the match right the first time.</span></li>
-        </ul>
+    </div>
+    <div class="step">
+      <div class="step-n">02</div>
+      <div>
+        <div class="step-t">We vet</div>
+        <p class="step-b">Every applicant is personally reviewed — credentials, experience, values alignment. We hold the standard so that when we introduce someone, it means something.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-n">03</div>
+      <div>
+        <div class="step-t">We score</div>
+        <p class="step-b">When a potential match emerges, we assess alignment across six dimensions before any name is shared. A strong CV isn't enough — fit has to hold in practice.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-n">04</div>
+      <div>
+        <div class="step-t">We introduce</div>
+        <p class="step-b">A warm, personal introduction — always with context, always with care. One match. Considered. Yours to decide what happens next.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- TRUST SIGNALS -->
-<section class="trust-section">
-  <div class="trust-inner">
-    <div class="trust-item">
-      <div class="trust-mark">✦</div>
-      <div class="trust-title">AHPRA verified</div>
-      <div class="trust-desc">Every practitioner's registration is confirmed active before they appear on the platform.</div>
+<!-- FOR PRACTITIONERS -->
+<section id="nurses">
+  <div class="reveal">
+    <div class="lbl">For practitioners</div>
+    <p class="nurses-statement">"Your next clinic should feel like yours."</p>
+  </div>
+  <div class="nurses-below">
+    <div class="reveal">
+      <p class="nurses-body">The aesthetic industry is full of clinics. Very few are built for the career you're actually trying to build. Placē exists to find those ones — environments where your standards are matched, your scope is respected, and the culture feels right from day one.</p>
+      <a href="https://tally.so/r/LZo961" class="btn-fill" target="_blank" rel="noopener">Join as a nurse →</a>
     </div>
-    <div class="trust-item">
-      <div class="trust-mark">✦</div>
-      <div class="trust-title">Training &amp; experience</div>
-      <div class="trust-desc">Courses, certifications, and confirmed hands-on clinical hours are reviewed — not just listed.</div>
-    </div>
-    <div class="trust-item">
-      <div class="trust-mark">✦</div>
-      <div class="trust-title">Clinical competencies</div>
-      <div class="trust-desc">We assess hands-on capability across treatments — so clinics know exactly what they're getting.</div>
-    </div>
-    <div class="trust-item">
-      <div class="trust-mark">✦</div>
-      <div class="trust-title">Cultural fit screening</div>
-      <div class="trust-desc">Values, working style, and clinic culture are assessed on both sides. The right fit is never just clinical.</div>
-    </div>
-    <div class="trust-item">
-      <div class="trust-mark">✦</div>
-      <div class="trust-title">Software familiarity</div>
-      <div class="trust-desc">Clinic software, booking systems, and EMR experience are captured upfront — no surprises on day one.</div>
-    </div>
-    <div class="trust-item">
-      <div class="trust-mark">✦</div>
-      <div class="trust-title">Curated clinics</div>
-      <div class="trust-desc">Every clinic is assessed on culture, clinical standards, and how they invest in their practitioners.</div>
+    <div class="reveal d1">
+      <ul class="checks">
+        <li>Placements matched to your values, not just your availability</li>
+        <li>Every clinic vetted before your name is ever introduced</li>
+        <li>A personal conversation before any introduction is made</li>
+        <li>No cold applications, no ghost listings, no wasted time</li>
+      </ul>
     </div>
   </div>
 </section>
 
-<!-- MANIFESTO -->
-<section class="manifesto-strip">
-  <p class="manifesto-text">We don't place people.<br><em>We place careers.</em></p>
+<!-- FOR CLINICS -->
+<section id="clinics">
+  <div class="clinics-grid">
+    <div class="reveal">
+      <div class="lbl">For clinic owners</div>
+      <h2 class="clinics-h2">Stop hiring reactively.</h2>
+      <p class="clinics-body">The scramble to fill a role last-minute costs more than a placement fee. It costs culture, patient trust, and the months it takes to rebuild. The right practitioner is already in our network.</p>
+      <a href="https://tally.so/r/PdPpeP" class="btn-fill" target="_blank" rel="noopener">Tell us what you need →</a>
+    </div>
+    <div class="reveal d1">
+      <div class="dims-wrap">
+        <p class="dims-label">Before any introduction is made, we align on</p>
+        <p class="dims-text">Values · Culture · Autonomy<br>Experience · Availability · Pay</p>
+        <p class="dims-note">Six dimensions. One considered introduction.</p>
+      </div>
+      <ul class="checks">
+        <li>Every practitioner personally reviewed before entering the network</li>
+        <li>Values misalignment is an absolute disqualifier — non-negotiable</li>
+        <li>Location is the only hard filter; everything else is scored</li>
+        <li>One considered introduction, not a shortlist to sift</li>
+      </ul>
+    </div>
+  </div>
 </section>
 
-<!-- WAITLIST -->
-<section class="waitlist-section" id="waitlist">
-  <div class="waitlist-inner">
-    <p class="waitlist-eyebrow">Join the waitlist</p>
-    <h2 class="waitlist-headline">Be the first to know when Plac&#x113; launches.</h2>
-    <p class="waitlist-sub">Whether you're a nurse looking for the right clinic, or a clinic owner looking for the right injector — tell us who you are and we'll reach out personally when we open.</p>
-    <div class="split-cta">
-      <a href="https://tally.so/r/LZo961" class="cta-card nurse" target="_blank">
-        <p class="cta-tag">I'm a nurse / practitioner</p>
-        <h3 class="cta-title">Join the nurse waitlist</h3>
-        <p class="cta-desc">You trained hard. You deserve a clinic that sees your value. Let's find it together.</p>
-        <span class="cta-btn">Build my profile →</span>
-      </a>
-      <a href="https://tally.so/r/PdPpeP" class="cta-card clinic" target="_blank">
-        <p class="cta-tag">I own / manage a clinic</p>
-        <h3 class="cta-title">Join the clinic waitlist</h3>
-        <p class="cta-desc">Stop settling for whoever applies. Access vetted practitioners matched to your standards.</p>
-        <span class="cta-btn">Tell us what you need →</span>
-      </a>
+<!-- FOR ROOMS -->
+<section id="rooms">
+  <div class="rooms-top reveal">
+    <div>
+      <div class="lbl">For rooms</div>
+      <h2 class="rooms-h2">The right space is part of the match.</h2>
     </div>
-    <p class="waitlist-note">No spam. No cold outreach. Just a personal note when we're ready to match you.</p>
+    <p class="rooms-lede">Where you work shapes the work you do. Placē matches treatment rooms with the practitioners who fit them — and practitioners with the spaces built for the way they work.</p>
+  </div>
+  <div class="rooms-panels reveal d1">
+    <div class="rooms-panel">
+      <span class="rooms-panel-lbl">I have a room</span>
+      <p class="rooms-panel-body">A treatment room sitting empty between your bookings isn't just lost revenue — it's a risk if the wrong person fills it. Placē ensures every practitioner introduced to your space is vetted, credentialed, and aligned with the standard you've built.</p>
+      <ul class="checks checks-room">
+        <li>Every injector reviewed before being introduced to your space</li>
+        <li>Your clinic culture and reputation protected throughout</li>
+        <li>Flexible arrangements — casual sessions or ongoing</li>
+        <li>Full control over who enters your space</li>
+      </ul>
+      <a href="https://tally.so/r/44G8kO" class="btn-fill" target="_blank" rel="noopener">List your room →</a>
+    </div>
+    <div class="rooms-panel">
+      <span class="rooms-panel-lbl">I need a space</span>
+      <p class="rooms-panel-body">Working independently requires the right base — one with the right setup, the right location, and a clinic environment that doesn't compromise your standards. Placē finds the spaces that work for the way you work.</p>
+      <ul class="checks checks-room">
+        <li>Matched to your location, schedule, and setup requirements</li>
+        <li>Clinic environments that meet your professional standard</li>
+        <li>Flexible terms for independent practitioners</li>
+        <li>Introductions to clinic owners who are genuinely ready for you</li>
+      </ul>
+      <a href="https://tally.so/r/44G8kO" class="btn-fill" target="_blank" rel="noopener">Find a space →</a>
+    </div>
+  </div>
+</section>
+
+<!-- WHY PLACĒ -->
+<section id="about">
+  <div class="about-e" aria-hidden="true">Ē</div>
+  <div class="about-inner reveal">
+    <div class="lbl">Why Placē</div>
+    <h2 class="about-h2">THE STANDARD,<br>RAISED.</h2>
+    <p class="about-statement">
+      "Every introduction we make is one we'd stake the platform on. That's not caution — that's the standard."
+    </p>
+    <div class="about-body">
+      <p>The aesthetic industry has run on reactive hiring and wrong placements for too long. Practitioners landing in the wrong rooms. Clinics burning through staff they never should have hired. The cost is real — to careers, to cultures, to patients.</p>
+      <p>Placē was built to change that. Not with a better algorithm. With genuine industry knowledge, human judgement, and a real care for what happens after the introduction is made. We built the infrastructure the industry was missing. When we connect two people, it holds.</p>
+    </div>
+    <div class="badges">
+      <span class="badge">Personally vetted</span>
+      <span class="badge">Aesthetic industry</span>
+      <span class="badge">Considered matching</span>
+      <span class="badge">Australia</span>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-bg" aria-hidden="true">Ē</div>
+  <span class="cta-label">Join the network</span>
+  <h2 class="cta-h2">Some matches are worth<br>waiting for.</h2>
+  <p class="cta-sub">Placē is in early access. We're building the network carefully — the same way we make every introduction.</p>
+  <div class="cta-actions">
+    <a href="https://tally.so/r/LZo961" class="btn-cta" target="_blank" rel="noopener">I'm a nurse →</a>
+    <a href="https://tally.so/r/PdPpeP" class="btn-cta" target="_blank" rel="noopener">I own a clinic →</a>
+    <a href="https://tally.so/r/44G8kO" class="btn-cta-ghost" target="_blank" rel="noopener">I have a room to rent</a>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-wordmark">Plac&#x113;</div>
-  <div class="footer-tagline">Where talent meets practice</div>
-  <div style="font-size:11px;color:#5C4F3A;margin-bottom:8px;letter-spacing:0.04em;">Your details are never shared without your permission.</div>
-  <div class="footer-note">© 2026 Placē · Australia · All rights reserved · placedhealth@gmail.com</div>
+  <a href="#" class="footer-logo">PLAC<span>Ē</span></a>
+  <div class="footer-links">
+    <a href="https://tally.so/r/LZo961" target="_blank" rel="noopener">For nurses</a>
+    <a href="https://tally.so/r/PdPpeP" target="_blank" rel="noopener">For clinics</a>
+    <a href="https://tally.so/r/44G8kO" class="footer-rooms" target="_blank" rel="noopener">Room matching</a>
+    <a href="mailto:placedhealth@gmail.com">Contact</a>
+    <a href="https://instagram.com/place.au" target="_blank" rel="noopener">@place.au</a>
+    <a href="https://tally.so/r/LZo961" class="footer-join" target="_blank" rel="noopener">Join now</a>
+  </div>
+  <div class="footer-copy">placedhq.com.au · Australia</div>
 </footer>
 
 <script>
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        const navHeight = document.querySelector('nav').offsetHeight;
-        const top = target.getBoundingClientRect().top + window.scrollY - navHeight - 20;
-        window.scrollTo({ top, behavior: 'smooth' });
-      }
-    });
-  });
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 </script>
 </body>
 </html>
